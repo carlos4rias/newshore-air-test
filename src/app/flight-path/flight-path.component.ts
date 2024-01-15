@@ -1,8 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FlightsService } from '../services/flights-service';
+import { FlightsService } from '../services/flights.service';
 import { Flight } from '../models/flight.model';
 import { Path } from '../models/path.model';
+import { CurrencyService } from '../services/currency.service';
+import { Currency } from '../models/currency.model';
+
+const NUMBER_OF_CURRENCIES = 40;
 
 @Component({
   selector: 'app-flight-path',
@@ -25,10 +29,15 @@ export class FlightPathComponent implements OnInit{
     }
   };
 
+  currencyValues: { [key: string]: number } = {};
+  currentCurrency: string = 'USD';
+  currencies:string[] = [];
+
   loading: boolean = false;
 
 
-  flightsService = inject(FlightsService)
+  flightsService = inject(FlightsService);
+  currencyService = inject(CurrencyService);
   
   constructor(private router: Router, private route: ActivatedRoute) {
     this.equalCityError = false;
@@ -48,7 +57,19 @@ export class FlightPathComponent implements OnInit{
           next: (data: Flight[]) => {
             this.availableFlights = data;
             this.flightPath = this.flightsService.buildPath(this.availableFlights, this.maxFlights, this.origin, this.destination);
-            this.loading = false;
+            console.log(`this.flightPath`)
+            console.log(this.flightPath)
+            this.currencyService.getCurrencies().subscribe({
+              next: (currency: Currency) => {
+                this.currencyValues = currency.rates;
+                this.currencies = Object.keys(currency.rates).slice(0, NUMBER_OF_CURRENCIES);
+                this.loading = false;
+              },
+              error: (error) => {
+                console.log(error);
+                this.loading = false;
+              }
+            })
           },
           error: (error) => {
             console.log(error);
@@ -60,6 +81,16 @@ export class FlightPathComponent implements OnInit{
 
 
     });
+  }
+
+  handleCurrencyChange(event: any):void {
+    console.log(event.target.value)
+    this.currentCurrency = event?.target.value;
+  }
+
+  getPrice(currentValue:number):number {
+    if (this.currentCurrency === 'USD') return currentValue;
+    return currentValue * this.currencyValues[this.currentCurrency];
   }
 
   goToHome(): void {

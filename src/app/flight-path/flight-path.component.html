@@ -27,13 +27,13 @@
                 <hr>
                 <div class="flight-container-body">
                   <span>
-                    price: {{flight.price}}
+                    Price: {{getPrice(flight.price) | currency:currentCurrency}}
                   </span>
                   <span>
-                    Flight transport: {{flight.transport.flightNumber}}
+                    Flight number: {{flight.transport.flightNumber}}
                   </span>
                   <span>
-                    flight carrier: {{flight.transport.flightCarrier}}
+                    Flight carrier: {{flight.transport.flightCarrier}}
                   </span>
                 </div>
               </div>
@@ -41,7 +41,15 @@
           </div>
   
           <div>
-            Price: {{flightPath.journey.price | currency:'EUR'}}
+            Price: {{getPrice(flightPath.journey.price) | currency:currentCurrency}} 
+            <div>
+              <label for="currencyselect">Currency</label>
+              <select name="currencyselect" (change)="handleCurrencyChange($event)">
+                <ng-container *ngFor="let currency of currencies">
+                  <option [value]="currency" [selected]="currency===currentCurrency">{{currency}}</option>
+                </ng-container>
+              </select>
+            </div>
           </div>
           
         </div>
