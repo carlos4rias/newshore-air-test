@@ -1,0 +1,41 @@
+.path-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1.5em;
+  max-width: 70%;
+}
+
+.flights-container {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+
+.flight-container {
+  display: flex;
+  min-width: 170px;
+  flex-direction: column;
+  margin: 5px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #f3f3f3;
+}
+
+.flight-container hr {
+  margin: 5px 0;
+  height: 1px;
+  border-style: none ;
+  border: 1px solid white;
+}
+
+.flight-container-header {
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.flight-container-body {
+  font-size: 0.6em;
+  display: flex;
+  flex-direction: column;
+}

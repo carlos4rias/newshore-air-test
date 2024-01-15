@@ -13,8 +13,38 @@
         </span>
       </ng-container>
       <ng-container *ngIf="flightPath.journey.flights.length !== 0">
-        Encontro ruta!
-        
+        <div class="path-container">
+          <h3>
+            Yay!!!, There is a path that meets your request for the flight between {{origin}} and {{destination}} with a maximum of {{maxFlights}} flights.
+          </h3>
+          <div class="flights-container">
+            <ng-container *ngFor="let flight of flightPath.journey.flights">
+              <div class="flight-container">
+                <div class="flight-container-header">
+                  {{flight.origin}} -- 
+                  {{flight.destination}}
+                </div>
+                <hr>
+                <div class="flight-container-body">
+                  <span>
+                    price: {{flight.price}}
+                  </span>
+                  <span>
+                    Flight transport: {{flight.transport.flightNumber}}
+                  </span>
+                  <span>
+                    flight carrier: {{flight.transport.flightCarrier}}
+                  </span>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+  
+          <div>
+            Price: {{flightPath.journey.price | currency:'EUR'}}
+          </div>
+          
+        </div>
       </ng-container>
       <button (click)="goToHome()">Go back</button>
     </ng-container>

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { FlightFormComponent } from './flight-form/flight-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlightPathComponent } from './flight-path/flight-path.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
