@@ -23,7 +23,7 @@
       >
     <button type="submit">search</button>
   </form>
-  <span class="form-field-error" *ngIf="formHasErrors('origin') || formHasErrors('destination')">
+  <span class="error" *ngIf="formHasErrors('origin') || formHasErrors('destination')">
     There is an error in the highlighted with red fields, Origin and Destination Field must follow the next format:<br>
     <ul>
       <li>Can't be empty</li>

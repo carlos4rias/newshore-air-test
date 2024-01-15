@@ -1,0 +1,13 @@
+<main>
+  <ng-container *ngIf="equalCityError">
+    <span  class="error">
+      Please check the origin ({{origin}}) or destination ({{destination}}), they can't be the same. Thanks!
+    </span>
+    <button (click)="goToHome()">Go back</button>
+  </ng-container>
+  <ng-container *ngIf="!equalCityError">
+    <h3>
+      Loading from {{origin}} to {{destination}}...
+    </h3>
+  </ng-container>
+</main>

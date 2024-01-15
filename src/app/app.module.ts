@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FlightFormComponent } from './flight-form/flight-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FlightPathComponent } from './flight-path/flight-path.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FlightFormComponent
+    FlightFormComponent,
+    FlightPathComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-flight-form',
@@ -10,7 +11,7 @@ export class FlightFormComponent {
 
   searchFlightForm: FormGroup;
 
-  constructor(private form: FormBuilder) {
+  constructor(private router: Router, private form: FormBuilder) {
     this.searchFlightForm = this.form.group({
       origin: ['', [Validators.required, Validators.pattern]],
       destination: ['', [Validators.required, Validators.pattern]]
@@ -30,7 +31,14 @@ export class FlightFormComponent {
   searchFlight() {
     if (this.searchFlightForm.status === 'INVALID')
       return;
+      const originControl = this.searchFlightForm.get('origin');
+      const destinationControl = this.searchFlightForm.get('destination');
     console.log(`${this.searchFlightForm.status} and redirecting`);
+    this.router.navigate(['/flight-path'],
+    {queryParams: {
+      origin: originControl?.value,
+      destination: destinationControl?.value
+    }});
   }
 
   formHasErrors(controlId: string) {

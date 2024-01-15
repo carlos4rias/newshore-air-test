@@ -5,10 +5,17 @@
   font-family: "Lucida Console", "Courier New", monospace;
 }
 
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1.5em;
+}
+
 input {
   height: 2rem;
   padding: 5px;
-  margin: 5px 10px;
+  margin: 5px 5px 20px 5px;
   color: #999;
   border-style: none;
   border: 1px solid #e0d1d1;
@@ -41,7 +48,7 @@ li {
   margin-left: 1.5rem;
 }
 
-.form-field-error {
+.error {
   background-color: #f8f6f6;
   padding: 10px;
   margin: 10px;
