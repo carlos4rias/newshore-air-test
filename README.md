@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.10. and NodeJs version 18.16.1
 
+
+## Test the project at GitHub pages
+Follow this address https://carlos4rias.github.io/newshore-air-test/ to test the project "`deployed`" :).
+
 ## Run the project locally
 
 - browse till the project folder
