@@ -3,7 +3,7 @@
   <form class="app-flight-form" [formGroup]="searchFlightForm" (ngSubmit)="searchFlight()">
     <label for="origin">Origin:</label>
     <input type="text" 
-      [ngClass]="{'input-error' : formHasErrors('origin')}"
+      [ngClass]="{'input-error' : formHasErrors('origin') || hasErrors}"
       name="origin"
       pattern="[A-Z]{3}"
       required
@@ -13,23 +13,31 @@
       >
     <label for="destination">Destination:</label>
     <input type="text" 
-      [ngClass]="{'input-error' : formHasErrors('destination')}"
+      [ngClass]="{'input-error' : formHasErrors('destination') || hasErrors}"
       name="destination"
       pattern="[A-Z]{3}"
       required
       formControlName="destination"
       maxlength="3"
-      placeholder="Example MZN"
+      placeholder="Example MZL"
       >
+      <label for="maxflights">Max number of flights in a path (0 to allow infinite flights):</label>
+      <input type="number" 
+        name="maxflights"
+        formControlName="maxflights"
+        value="0"
+        min="0"
+        max="6"
+        >
     <button type="submit">search</button>
   </form>
-  <span class="error" *ngIf="formHasErrors('origin') || formHasErrors('destination')">
+  <span class="error" *ngIf="formHasErrors('origin') || formHasErrors('destination') || hasErrors">
     There is an error in the highlighted with red fields, Origin and Destination Field must follow the next format:<br>
     <ul>
       <li>Can't be empty</li>
       <li>Exactly 3 characters</li>
       <li>Composed only by latin alphabet characters</li>
-      <li>Examples: MNZ, PEI, MED</li>
+      <li>Examples: MZL, PEI, MED</li>
     </ul>
   </span>
 </main>

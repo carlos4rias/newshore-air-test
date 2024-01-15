@@ -6,8 +6,22 @@
     <button (click)="goToHome()">Go back</button>
   </ng-container>
   <ng-container *ngIf="!equalCityError">
-    <h3>
-      Loading from {{origin}} to {{destination}}...
-    </h3>
+    <ng-container *ngIf="!loading">
+      <ng-container *ngIf="flightPath.journey.flights.length === 0">
+        <span  class="error">
+          Sorry :( there is no path between ({{origin}}) and ({{destination}}), try again!
+        </span>
+      </ng-container>
+      <ng-container *ngIf="flightPath.journey.flights.length !== 0">
+        Encontro ruta!
+        
+      </ng-container>
+      <button (click)="goToHome()">Go back</button>
+    </ng-container>
+    <ng-container *ngIf="loading">
+      <h3>
+        Loading from {{origin}} to {{destination}}...
+      </h3>
+    </ng-container>
   </ng-container>
 </main>
